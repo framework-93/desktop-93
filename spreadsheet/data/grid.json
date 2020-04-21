@@ -1,0 +1,15 @@
+{
+  "grid": [
+    [
+      {"value": "#", "readOnly": true, "disableEvents": true},
+      {"value": "W", "readOnly": true, "disableEvents": true},
+      {"value": "X", "readOnly": true, "disableEvents": true},
+      {"value": "Y", "readOnly": true, "disableEvents": true},
+      {"value": "Z", "readOnly": true, "disableEvents": true}
+    ],
+    [{"disableEvents": true, "readOnly": true, "value": "0"}, {"value": "W0"}, {"value": "X0"}, {"value": "Y0"}, {"value": "Z0"}],
+    [{"disableEvents": true, "readOnly": true, "value": "1"}, {"value": "W1"}, {"value": "X1"}, {"value": "Y1"}, {"value": "Z1"}],
+    [{"disableEvents": true, "readOnly": true, "value": "2"}, {"value": "W2"}, {"value": "X2"}, {"value": "Y2"}, {"value": "Z2"}],
+    [{"disableEvents": true, "readOnly": true, "value": "3"}, {"value": "W3"}, {"value": "X3"}, {"value": "Y3"}, {"value": "Z3"}]
+  ]
+}

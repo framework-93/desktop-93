@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Desktop 93</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Language" content="en_US">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+<link rel="stylesheet" href="c/sys42.css">
+<link rel="stylesheet" href="c/sys/skins/w93.css" id="w93_skin">
+<link rel="stylesheet" href="sys/hotfix.css">
+<style>
+.hamburger-button {
+float: right; width: 32px; height: 32px; font-size: 10px; text-transform: uppercase; text-decoration: none;
+color: #505050; border: transparent; background-color: transparent; margin: 2px; padding: 6px 10px;
+cursor: pointer;
+}
+.hamburger-button path { stroke: #505050; }
+.hamburger-button:hover { color: #505050; background-color: transparent; }
+.hamburger-button:hover path { stroke: #505050; }
+</style>
+<script>var $boot = {}; window.$boot = $boot;</script>
+</head>
+<body class="noscroll skin_alpha firefox">
+<div class="_ui_layout bbb" id="s42_screen">
+    <div class="ui_layout" id="nofx">
+        <div class="fillspace skin_background" id="s42_background"></div>
+        <section class="noscroll invisible" id="s42_desktop" touch-action="none">
+            <div id="app" style="position:relative;top:25%;right:10%;"></div>
+        </section>
+        <div class="fillspace" id="s42_canvas"></div>
+        <div class="fillspace ui_terminal noscroll" id="s42_splashscreen" style="white-space:normal;"></div>
+        <footer class="pa0 relative">
+            <div class="ui_combo_one skin_base skin_outset_deep hide" id="s42_taskbar">
+                <button class="hamburger-button" id="s42_start" type="button"><svg width="8" height="8"><path d="M 0,1.5 8,1.5 M 0,4.5 8,4.5 M 0,7.5 8,7.5"></path></svg></button>
+                <div class="ui_combo_one__main ui_window_dock" id="s42_dock"></div>
+                <div class="skin_inset" id="s42_notif">
+                <span id="s42_clock"></span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="error.js"></script>
+<script src="c/sys42.js"></script>
+<script src="sys/desktop.js"></script>
+<script src="sys/upgrade.js"></script>
+<script src="sys/apps.js"></script>
+<script>!(function() { "use strict";
+  system42({
+    _apps: {},
+    _clean: {},
+    _states: { opened: {} },
+    _sound: {},
+    _init: {},
+    _events: $watch({}),
+    _path: { key: {} },
+    _get: { mime: { ext: {}, apps: [] }, ext: { mime: {}, apps: {} } },
+    _dom: {
+      taskbar: document.getElementById("s42_taskbar"),
+      desktop: document.getElementById("s42_desktop"),
+      background: document.getElementById("s42_background"),
+      screen: document.getElementById("s42_screen"),
+      splash: document.getElementById("s42_splashscreen"),
+      clock: document.getElementById("s42_clock"),
+      canvas: document.getElementById("s42_canvas")
+    },
+    _settings: {
+      sounds: {},
+      noSplash: true,
+      defaultApp: {
+        html: "iframe", htm: "iframe", php: "iframe", xml: "code",
+        svg: "img", gif: "img", png: "img", jpeg: "img", jpg: "img"
+      }
+    },
+    _schemas: {
+      shortcut: { icon: { type: "string", plugin: { icon: { watch: "exe" } } },
+      exe: { title: "command", type: "string", placeholder: "http://", attributes: { autofocus: true, required: true },
+      plugin: { explorer: { accept: "*", path: "/" } } }, title: { type: "string", placeholder: "Leave blank to use same name as target" } } },
+    _temp: { files: '/files.json', mimetypes: "/c/mimetypes.json", splash: "/c/sys/boot/splash.html", init: {} },
+    _icons: { w: 72, h: 60 }, _keyboard: { layout: {} }, debug: false, devmode: false, started: false }, function(le) {
+    window.le = le;
+    system42(
+      "bios",[
+        "settings","modules","desktop",[
+          "audio","boot","apps",[
+            "utils","storage","upgrade","config","exe","explorer","start"
+          ]
+        ]
+      ],
+      "splash",
+      "reveal", function(le) {
+      le.canvas = { layers: [], ctxs: [],
+        add: function() { this.cnv = document.createElement("canvas"); le._dom.canvas.appendChild(this.cnv);
+          this.cnv.width = window.innerWidth;
+          this.cnv.height = window.innerHeight;
+          this.layers.push(this.cnv);
+          this.ctx = this.cnv.getContext("2d");
+          this.ctxs.push(this.ctx);
+        },
+        draw: function(img, x, y) { this.ctx.drawImage(img, x, y); },
+        clear: function() { this.ctx.clearRect(0, 0, this.cnv.width, this.cnv.height); }
+      };
+      le.canvas.add();
+      document.onkeydown = null;
+      document.onclick = null;
+      delete le._temp;
+      delete le.devmode;
+      delete le.started;
+      if (window.system42) window.system42.stop();
+    });
+  });
+})();
+</script>
+</body>
+</html>
